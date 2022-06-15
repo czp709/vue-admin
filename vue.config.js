@@ -7,11 +7,11 @@ module.exports = defineConfig({
   configureWebpack: {
     plugins: [
       AutoImport({
-        resolvers: [ElementPlusResolver({ importStyle: false })],
+        resolvers: [ElementPlusResolver({ importStyle: false })]
       }),
       Components({
-        resolvers: [ElementPlusResolver({ importStyle: false })],
+        resolvers: [ElementPlusResolver({ importStyle: false })]
       })
-    ],
+    ]
   }
 });

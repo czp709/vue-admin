@@ -6,13 +6,13 @@ const state = {
     );
     return !flag;
   })(),
-  menufold: localStorage.getItem("menufold") == 'false' ? false : true
+  menufold: localStorage.getItem('menufold') == 'false' ? false : true
 };
 const mutations = {
   changefold(state) {
     console.log();
     state.menufold = !state.menufold;
-    localStorage.setItem("menufold", Boolean(state.menufold));
+    localStorage.setItem('menufold', Boolean(state.menufold));
   }
 };
 

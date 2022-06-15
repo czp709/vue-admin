@@ -45,9 +45,9 @@ var userInfo = computed(() => {
   return store.state.user.userInfo
 })
 watch(userInfo,()=>{
-  if(userInfo.value.clubInfo){
-    clubInfo.name = userInfo.value.clubInfo[0].name
-    clubInfo.logo = userInfo.value.clubInfo[0].logo
+  if(userInfo.value){
+    clubInfo.name = userInfo.value.name
+    clubInfo.logo = userInfo.value.logo
   }
 },{ immediate: true,deep:true})
 

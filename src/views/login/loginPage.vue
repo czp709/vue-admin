@@ -1,17 +1,13 @@
 <template>
   <div class="login-wrap bruce" v-loading="loading">
-    <!-- <ul class="bubble-bgwall">
-      <li>vue2</li>
-      <li>vue2</li>
-      <li>vue2</li>
-      <li>vue2</li>
-      <li>vue2</li>
-      <li>vue2</li>
-      <li>vue2</li>
-      <li>vue2</li>
-      <li>vue2</li>
-      <li>vue2</li>
-    </ul> -->
+    <ul class="bubble-bgwall">
+      <li>zipen</li>
+      <li>zipen</li>
+      <li>zipen</li>
+      <li>zipen</li>
+      <li>zipen</li>
+      <li>zipen</li>
+    </ul>
     <div class="ms-login">
       <div class="title">登录</div>
       <el-form :model="ruleForm" :rules="rules" ref="loginForm" label-width="0px">
@@ -19,16 +15,17 @@
           <el-input type="text" v-model="ruleForm.username" placeholder="账号"></el-input>
         </el-form-item>
         <el-form-item prop="pwd" label="">
-          <el-input type="password" placeholder="密码" show-password v-model="ruleForm.pwd" @keyup.enter="Vcode_show = true"></el-input>
+          <el-input type="password" placeholder="密码" show-password v-model="ruleForm.pwd"
+            @keyup.enter="Vcode_show = true"></el-input>
         </el-form-item>
       </el-form>
-      <el-button type="primary" @click="login">登录</el-button>
-      <!-- <Vcode :show="Vcode_show" @success="login" @close="Vcode_show=false" /> -->
+      <el-button type="primary" @click="Vcode_show = true" v-preventReClick>登录</el-button>
+      <Vcode :show="Vcode_show" @success="login" @close="Vcode_show = false" />
     </div>
     <!-- 友情链接 -->
     <div class="links" v-if="$store.state.control_lable.isPC">
       <span>
-        Copyright©2022 vue2
+        Copyright©2022 vue3
       </span>
       <span>
         作者:
@@ -44,16 +41,16 @@
 </template>
 <script setup>
 import { ref, reactive } from 'vue';
-// import Vcode from "vue-puzzle-vcode"
-import user from '@/api/user'
+import Vcode from "vue3-puzzle-vcode";
+import user from '@/api/user';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-const loading = ref(false)
-const Vcode_show = ref(false)
+const loading = ref(false);
+const Vcode_show = ref(false);
 let ruleForm = reactive({
   username: 'oszua',
   pwd: 'pythonidle37.'
-})
+});
 const rules = {
   username: [
     { required: true, message: '请输入账号', trigger: 'blur' },
@@ -63,29 +60,30 @@ const rules = {
     { required: true, message: '请输入密码', trigger: 'blur' },
     { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
   ]
-}
-const router = useRouter()
-const store = useStore()
-const login = ()=>{
-  Vcode_show.value = false
-  loading.value = true
+};
+const router = useRouter();
+const store = useStore();
+const login = () => {
+  Vcode_show.value = false;
+  loading.value = true;
   user.loginApi(ruleForm).then(res => {
-    loading.value = false
+    loading.value = false;
     console.log(res);
     if (res.data.code == 200) {
       store.dispatch("user/saveUserInfo", res).then(() => {
-        router.replace("/home")
-      })
+        router.replace("/home");
+      });
     }
-  }).catch(err=>{
-    loading.value = false
+  }).catch(err => {
+    loading.value = false;
     console.log(err);
-  })
-}
+  });
+};
 </script>
 <style scoped>
-/* @import "../assets/style.css";
-@import "../assets/style.scss"; */
+@import "@/assets/style.css";
+@import "@/assets/style.scss";
+
 .login-wrap {
   width: 100%;
   height: 100vh;
@@ -117,48 +115,59 @@ const login = ()=>{
   -moz-animation: fadenum 1.5s ease;
   animation: fadenum 1.5s ease;
 }
+
 @-webkit-keyframes fadenum {
+
   /*设置内容由显示变为隐藏*/
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
 
 @-moz-keyframes fadenum {
+
   /*设置内容由显示变为隐藏*/
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
 
 @-o-keyframes fadenum {
+
   /*设置内容由显示变为隐藏*/
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
 
 @keyframes fadenum {
+
   /*设置内容由显示变为隐藏*/
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 .el-form {
   margin: 20px 0;
 }
+
 .login-btn button {
   width: 100%;
   height: 36px;

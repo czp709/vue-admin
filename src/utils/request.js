@@ -7,9 +7,9 @@
  * @LastEditTime: 2021-10-13 14:44:00
  */
 // 导入axios
-import axios from "axios";
-import Cookies from "js-cookie";
-import store from "@/store/index";
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import store from '@/store/index';
 // 允许axios携带cookies
 axios.defaults.withCredentials = false;
 // 1. 创建新的axios实例，
@@ -24,8 +24,8 @@ service.interceptors.request.use(config => {
   // 在发送请求之前做些什么
   // 如果我们的使用的接口需要配置headers请求头或者body请求，可以再改部分添加
   // headers请求头:config.headers["字段名"]="字段值" + token值
-  config.headers["token"] = Cookies.get("token");
-  config.headers["username"] = store.state.user.username;
+  config.headers['token'] = Cookies.get('token');
+  config.headers['username'] = store.state.user.username;
   return config;
 }, error => {
   Promise.reject(error);

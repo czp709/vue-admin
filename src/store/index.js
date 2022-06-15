@@ -1,6 +1,6 @@
 import { createStore } from 'vuex';
-import user from "./module/user";
-import control_lable from "./module/control_lable";
+import user from './module/user';
+import control_lable from './module/control_lable';
 export default createStore({
   state: {
     // 侧边栏背景色

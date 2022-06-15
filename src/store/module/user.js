@@ -1,7 +1,7 @@
 // import Vue from 'vue'
-import createdRoutes from "@/utils/createdRoutes.js";
-import router, { resetRouter } from "@/router/index.js";
-import Cookies from "js-cookie";
+import createdRoutes from '@/utils/createdRoutes.js';
+import router, { resetRouter } from '@/router/index.js';
+import Cookies from 'js-cookie';
 const state = {
   userInfo: {},
   level: 0
@@ -17,10 +17,10 @@ const mutations = {
 const actions = {
   saveUserInfo({ commit, getters }, res) {
     return new Promise(resolve => {
-      Cookies.set("token", res.data.data.token, { expires: 1 });
-      sessionStorage.setItem("userInfo", JSON.stringify(res));
-      commit("saveuserInfo", res.data.data);
-      commit("savelevel", res.data.data.level);
+      Cookies.set('token', res.data.data.token, { expires: 1 });
+      sessionStorage.setItem('userInfo', JSON.stringify(res));
+      commit('saveuserInfo', res.data.data);
+      commit('savelevel', res.data.data.level);
       // 生成用户可访问的路由表
       const route = getters.addRouters;
       // 将生成的路由表逐个添加入路由
@@ -32,10 +32,10 @@ const actions = {
   },
   logout({ commit }) {
     return new Promise(resolve => {
-      Cookies.remove("token");
-      commit("saveuserInfo", {});
-      commit("savelevel", 0);
-      sessionStorage.removeItem("userInfo");
+      Cookies.remove('token');
+      commit('saveuserInfo', {});
+      commit('savelevel', 0);
+      sessionStorage.removeItem('userInfo');
       resetRouter();
       resolve();
     });
@@ -44,7 +44,7 @@ const actions = {
 
 const getters = {
   addRouters(state) {
-    const { levelRouters } = require("@/router/levelRouters.js");
+    const { levelRouters } = require('@/router/levelRouters.js');
     return createdRoutes(levelRouters, state.level);
   }
 };
